@@ -483,16 +483,18 @@ git branch -M main
 git remote add origin git@github.com:ericarthuang/fastapi-19hrs.git
 git push -u origin main
 
+================================================
+#How to fix ‘fatal: remote origin already exists
 
-How to fix ‘fatal: remote origin already exists’ Git error
 git remote -v
 git remote remove "name"
 ================================================
 Heroku 
 ================================================
 # in venv terminal
+heroku --version
 heroku login
-heroku create fastapi-19hrs
+heroku create [name of app]
 git remote
 git push heroku main
 ================================================
