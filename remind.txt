@@ -463,18 +463,22 @@ app.add_middleware(
 )
 ================================================
 ================================================
-git and github
+Git & Github
 ================================================
 pip freeze > requirements.txt
-pip install -r requirements.txt
+pip install -r requirements.txt(for others)
 
-go to github to setup new repo[fastapi-19hrs-20220816]
+go to github to setup new repo[fastapi-19hrs]
 
 VSC terminal: 
 git init
+
+
+git config --global user.email "you@example.com"
+git config --global user.name "your name"
+
 git add --all
 git commit -m "initial commit"
-git config --global user.email XXXXXXXX@XXXXXXXX
 git branch -M main
 git remote add origin git@github.com:ericarthuang/fastapi-19hrs.git
 git push -u origin main
