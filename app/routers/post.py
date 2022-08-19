@@ -22,12 +22,10 @@ def get_posts(
     #posts = db.query(models.Post).filter(models.Post.owner_id == current_user.id, models.Post.title.contains(search)).limit(limit).offset(skip).all()
 
     posts = db.query(models.Post, func.count(models.Vote.post_id).label("votes")).join(
-        models.Vote, 
-        models.Post.id == models.Vote.post_id, 
-        isouter=True).group_by(
-            models.Post.id).filter(
-            models.Post.owner_id == current_user.id, models.Post.title.contains(search)
-            ).limit(limit).offset(skip).all()
+        models.Vote, models.Post.id == models.Vote.post_id, isouter=True).group_by(
+        models.Post.id).filter(
+        models.Post.owner_id == current_user.id, models.Post.title.contains(search)
+        ).limit(limit).offset(skip).all()
 
     return posts
 
