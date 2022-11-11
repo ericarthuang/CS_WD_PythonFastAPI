@@ -774,7 +774,7 @@ def authorized_client(client, token):
 ================================================
 CI/CD Config
 ================================================
-Github Actions
+Github Action
 ================================================
 Create a .github/workflows
 in .github/workflows directory, create a file named bulid-deploy.yml
