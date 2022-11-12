@@ -1,6 +1,13 @@
 name: Bulid and Deploy Code
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - "main"
+      - "site"
+  pull_request:
+    branches:
+      - "main"
 
 jobs:
   job1:
@@ -12,8 +19,8 @@ jobs:
         uses: actions/setup-python@v2
         with:
           phthon-version: "3.9"
-      - name: update pip
-        # run: execute the command in CLI
+      - name: Update pip
+        # run: execute the command in Linux Shell
         run: python -m pip install --upgrade pip
       - name: Install all dependencies
         run: pip install -r requirements.txt

@@ -125,10 +125,6 @@ from passlib.context import CryptContext
 pwd_context = CryptContext(schem=s=["bcrypt"], deprecated="auto")
 user.password = pwd_context.hash(user.password)
 ===============================================
-from passlib.context import CryptContext
-
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
 def hash(password: str):
     return pwd_context.hash(password)
 
@@ -290,22 +286,7 @@ def vote(vote: schemas.Vote,
 ===============================================
 Joins in SqlAlchemy
 ===============================================
-# in post.py
-from sqlalchemy import func
-
-posts = db.query(models.Post, func.count(models.Vote.post_id).label("votes")).join(
-    models.Vote, 
-    models.Post.id == models.Vote.post_id, 
-    isouter=True).group_by(
-        models.Post.id).filter(
-        models.Post.owner_id == current_user.id, models.Post.title.contains(search)
-        ).limit(limit).offset(skip).all()
-
-in schemas.py
-class PostOut(BaseModel):
-    Post: Post
-    votes: int
-
+# 
 ===============================================
 database migration tool - alembic
 
@@ -393,33 +374,7 @@ def downgrade() -> None:
 
 alembic upgrade 28a823bcbe44
 ===============================================
-# alembic revision -m "add foreign-key to posts table"
-
-Generating e:\CS54\Python_FastAPI_All\Python_FastAPI\alembic\versions\142648192936_add_foreign_key_to_posts_table.py
-
-def upgrade() -> None:
-    op.add_column(
-        'posts',
-        sa.Column(
-            'owner_id', 
-            sa.Integer(),
-            nullable=False,
-        )
-    )
-    op.create_foreign_key(
-        'posts_users_fk',
-        source_table='posts',
-        referent_table="users",
-        local_cols=['owner_id'], remote_cols=['id'],
-        ondelete="CASCADE",
-    )
-
-
-def downgrade() -> None:
-    op.drop_constraint('posts_users_fk', table_name='posts')
-    op.drop_column('posts', 'owner_id')
-
-alembic upgrade head
+# 
 ================================================
 
 
